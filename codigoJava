@@ -1,0 +1,18 @@
+public class Clases{
+ 
+ public Clase(){
+ }
+ int numero=0;
+ String nombre="nombre1";
+
+ public void setNumero(int numero){
+  this.numero=numero;
+ }
+
+ public void setNombre(String nombre{ 
+  this.nombre=nombre;
+ }
+
+ public int getNumero (){
+ return numero;
+ }
