@@ -1,0 +1,160 @@
+"""
+The following program checks the correct syntax of a java file from python
+GitHub = IBMarcoDominguez
+syntax for evalue:
+public class
+name of the class
+{
+}
+"""
+import os
+
+
+
+class ArchivoJava: # this is the class ArchivoJava for analizing of file java if the file exist in the pc
+    
+    def __init__(self,java): # Object and arguments
+        self.java=java
+    
+    def buscarJava(self): # funtion for search of file
+        if os.path.exists(f"{self.java}"): # condition
+            print("El archivo existe")
+        else:
+            print("El archivo no existe")
+        return self.java # this is return of value of self.java because is test of the existence
+    
+    def convertirJava(self): # funtion for export file and create a convertion to a list
+        java = open(f"{self.java}") # open file
+        for x in java: # bucle for create a new list whit the values of the file 
+            javaFull.append(x)
+        java.close() # close file
+        return javaFull # return javaFull the values of the list 
+    
+    def analizingPublicClass(self): # this is funtion for veririccation the correct sintaxy of public class in java
+        # print(javaFull)
+        java = open(f"{self.java}") # open file
+        for x in java: # bucle for create a new list whit the values of the file 
+            javaFull.append(x)
+        java.close() # close file
+        # return javaFull # return javaFull the values of the list 
+
+        agrupacionPublicClass = list(javaFull[0]) # we need selection of position 0 of the list javaFull for worker in the values public class
+        analizingPublicClass=[] # new list for analizing
+
+        for x in range(0,13): # buble for selection the values public class
+            analizingPublicClass.append(agrupacionPublicClass[x])
+            x+1
+
+        truePublicClass="public class " # this´s variable of comparation
+        truePublicClass=list(truePublicClass) # is necesary the convertion to list
+        # print(truePublicClass)
+
+        if truePublicClass==analizingPublicClass: # comparation 
+            verificacion_public_class="Se a escrito correctamente public class"
+            print("Se a escrito correctamente public class")
+        else:
+            verificacion_public_class="no se escribio correctamente public class"
+            print("no se escribio correctamente public class")
+        return verificacion_public_class # this is the string of the comparation
+
+    def analizingNameClass(self): # this is funtion for analizing name of the class
+
+        java = open(f"{self.java}") # open file
+        for x in java: # bucle for create a new list whit the values of the file 
+            javaFull.append(x)
+        java.close() # close file
+        # return javaFull # return javaFull the values of the list 
+
+        NameClass=list(javaFull[0]) # use position 0 in the list javaFull
+        NameClass.reverse() # invest values
+        analizingNameClass=[] # new list
+
+        for x in NameClass: # bucle for filter the name of the class
+            if x!=" ":
+                analizingNameClass.append(x)
+            else:
+                break
+        
+        analizingNameClass.reverse() # inverse list
+        analizingNameClass2=[] # new list
+        
+        for x in analizingNameClass: # bucle for filter the square bracket of the list
+            if x!="{":
+                analizingNameClass2.append(x)
+            else:
+                break
+        
+
+        comprovacionVocalInicial=analizingNameClass2[0].isupper() # method isupper use for analizing the capital letter of a values
+        
+        if comprovacionVocalInicial==True: # condition for analizing the init name of the class
+            comprobanteVocal="El nombre de la clase inicia correctamente con vocal"
+            print("El nombre de la clase inicia correctamente con vocal")
+        else:
+            comprobanteVocal="Es obligatorio inciar con vocal el nombre de la clase"
+            print("Es obligatorio inciar con vocal el nombre de la clase")
+        
+        vocal="" # wildcard
+        analizingNameClass2.reverse() # inverse list
+        for x in analizingNameClass2: # bucle for group letters of the list analizingNameClass and search in the variable vocal
+            vocal=str(x)+str(vocal)
+
+        if vocal.isalpha(): # method isalpha use for analizing the building of the variable, if the variable is build for letters
+            comprobanteString="El nombre de la clase cumple con todas las espesificaciones"
+            print("El nombre de la clase cumple con todas las espesificaciones")
+        else:
+            comprobanteString="Revise el nombre de la clase, renombrar"
+            print("Revise el nombre de la clase, renombrar")
+
+    def analizingInitCorchete(self): # this´s the funtion for analizing of the init square breack
+        
+        java = open(f"{self.java}") # open file
+        for x in java: # bucle for create a new list whit the values of the file 
+            javaFull.append(x)
+        java.close() # close file
+        # return javaFull # return javaFull the values of the list
+
+        analizingCorchete =[] # new list
+        PublicClass=list(javaFull[0]) # use position 0 if the list javaFull
+        PublicClass.reverse() # inverse list
+        
+        for x in range(0,2): # bucle for group necesary for analizing the square bracket
+            analizingCorchete.append(PublicClass[x])
+            x+1
+        
+        trueCorchete="\n{" # letters for analizing
+        trueCorchete=list(trueCorchete) # new list
+
+        if trueCorchete==analizingCorchete: # condition of verification
+            print("El primer corchete en el codigo fue correctamente colocado {")
+        else:
+            print("Error hace falta iniciar corchete posterior al nombre de la clase {")
+
+    def analizingFinishCorchete(self): # funtion for analizing of the finish square breack
+        
+        java = open(f"{self.java}") # open file
+        for x in java: # bucle for create a new list whit the values of the file 
+            javaFull.append(x)
+        java.close() # close file
+        # return javaFull # return javaFull the values of the list
+
+        trueCorcheteFinishing="}" # value for test
+        javaFull.reverse() # reverse list
+        analizingCorcheteFinishing =javaFull[0] # use position 0 of javaFull on of the new list
+
+        if analizingCorcheteFinishing==trueCorcheteFinishing: # condition for analizing of existence finish square breack
+            print("El corchete final de la clase fue correctamente colocado")  
+        else:  
+            print("Error en el corchete final")
+
+javaTxt="Python/PythonSinFronteras/intro-python/codigoJava.txt" # name of file
+javaFull,agrupacionPublicClass= [],[] # list for the use program
+
+# ArchivoJava(javaTxt).buscarJava() # I check the existence of the file java.txt
+# convertirArchivo = ArchivoJava(javaTxt).convertirJava() # create list of the values of the file
+# analizingPublicClass=ArchivoJava(javaTxt).analizingPublicClass() # analizing the sintaxy public class
+# ArchivoJava(javaTxt).analizingNameClass() # analizing of the name of the class if the class init whit capital letter and the name is write whit letters 
+# ArchivoJava(javaTxt).analizingInitCorchete() # analizing init square breacket 
+# ArchivoJava(javaTxt).analizingFinishCorchete()
+
+print("")
