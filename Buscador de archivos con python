@@ -1,0 +1,54 @@
+from tkinter import* # library of tkinter
+from tkinter import filedialog # extention of tkinter for use files
+
+def buscar(): # this´s the funtion for search and save the file java in mensaje
+    global archivo_tk
+    root.filename=filedialog.askopenfilename(title="buscar archivo",filetypes=(("archivos txt","*.txt"),)) #("todos los archivos, "*"")
+    java = open(f"{root.filename}") # open file
+    for x in java: # bucle for create a new list whit the values of the file 
+        javaFull.append(x)
+    java.close() # close file
+    mensaje=javaFull
+    imprimir(mensaje)
+def imprimir(mensaje): # this´s the funtion for print information
+    listBox.insert(END,mensaje)
+    print(javaFull)
+
+javaFull = [] # new list
+mensaje = "" # variable string
+
+root = Tk() # my windows and your settings
+root.title("buscador")
+root.geometry("600x500")
+root.resizable(0,0)
+borde_color = Frame(root,background="black",width=600,height=500)
+borde_color.place(x=0,y=0)
+
+zone_work = Frame(root,background="white",width=560,height=460) # first framne
+zone_work.place(x=20,y=20)
+
+label_titulo = Label(zone_work,text="AUTOMATA V1.0",font=("arial black",20),background="white",foreground="black") # label init
+label_titulo.place(x=160,y=10)
+
+btn_java = Button(zone_work,command=buscar,text=" Abrir clase java ",font=("arial",15),background="black",foreground="white") # zone work
+btn_java.place(x=200,y=80)
+
+label_resultado = Label(zone_work,text="RESULTADO: ",font=("arial black",20),background="white",foreground="black") # second label
+label_resultado.place(x=190,y=150)
+
+# mensajeTxT = Text(zone_work,width=65,height=14,foreground="black",background="gray")
+# mensajeTxT.place(x=20,y=220)
+
+borde_listBox = Frame(zone_work,background="black",width=540,height=230) # box of text
+borde_listBox.place(x=10,y=210)
+
+listBox = Listbox(zone_work,width=86,height=13,foreground="black",background="gray") # decoration
+listBox.place(x=20,y=220)
+
+barra = Scrollbar(zone_work,command=listBox.yview) # decoration
+barra.place(x=525,y=220,relheight=0.46)
+# place(relheight=0.2)
+listBox.config(yscrollcommand=barra)
+
+
+root.mainloop() # bucle of my windows
